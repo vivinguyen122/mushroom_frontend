@@ -1,0 +1,95 @@
+.textStyle {
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/*home style*/
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    /* Number of lines to display before adding ... */
+    -webkit-line-clamp: 2;
+}
+
+.smallinfotext{
+    font-size: 10px;
+    color: dimgrey;
+}
+
+.photosizing{
+    height: auto;
+    max-width: 100%;
+    border-radius: 8px;
+    align-content: center;
+}
+
+.card.postformat {
+    padding: 10px;
+    width: 32%;
+    margin: 5px;
+
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    border-radius: 8px; /*round border*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Optional: Add a box shadow for a subtle lift */
+}
+
+.textinfodisplay {
+    border-radius: 8px;
+    padding: 3px;
+    margin-top: 10px;
+    background-color: #f3f3f3; /* Replace "yourColor" with the desired background color */
+
+}
+
+.imgdisplay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.links{
+    text-decoration: none;
+    color:green;
+    margin-bottom: 5px;
+    background-color: #f2ffef;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.forumformat{
+    padding: 10px;
+    margin: 20px;
+    width: 95%;
+    border-radius: 8px; /*round border*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Optional: Add a box shadow for a subtle lift */
+}
+
+/*detail view*/
+.detailimgDisplay{
+    width: 150px;
+    /*background-color: #61dafb;*/
+    border-radius: 8px; /*round border*/
+    padding: 10px;
+
+}
+
+.detailtextbox{
+    margin: 10px;
+    display: inline-grid;
+}
+
+/*just making it look a little prettier w grow hover effect*/
+.hovergrow{
+    transform: scale(1.05);
+}
+
+.hovergrow:hover{
+    transition: transform 0.2s ease-in-out;
+}
