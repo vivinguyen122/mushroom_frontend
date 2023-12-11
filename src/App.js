@@ -5,6 +5,9 @@ import {Navbar, Nav, Container, Button} from 'react-bootstrap'
 import {Create, Home, List, Login, Results, PostDetails, ForumDetails} from './pages'
 import {Link, Route, Routes, useParams, useLocation, useNavigate} from "react-router-dom";
 import linkStyle from './index.css'
+import {Tooltip} from "reactstrap";
+import Allposts from "./pages/allposts";
+import Allforums from "./pages/allforums";
 
 //creating app
 class App extends Component {
@@ -94,9 +97,18 @@ class App extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
                     {/*links to other pages*/}
-                    <Link className={"linkStyle"} to={"/list"}>List</Link>
-                    <Link className={"linkStyle"} to={"/create"}>Create</Link>
-                    <Link className={"linkStyle"} to={"/setting"}>Setting</Link>
+                    <li className=" linkStyle tooltip_element">
+                      <Link id={"list_button"} className={"linkStyle"} to={"/list"}>List</Link>
+                      <span className="tooltip">View List</span>
+                    </li>
+                    <li className=" linkStyle tooltip_element">
+                      <Link className={"linkStyle"} to={"/create"}>Create</Link>
+                      <span className="tooltip">View Create</span>
+                    </li>
+                    <li className=" linkStyle tooltip_element">
+                      <Link className={"linkStyle"} to={"/setting"}>Setting</Link>
+                      <span className="tooltip">View Settings</span>
+                    </li>
                   </Nav>
                 </Navbar.Collapse>
 
@@ -130,6 +142,12 @@ class App extends Component {
 
               {/*detail page of forum*/}
               <Route path={'/forum/:id'} element={<ForumDetails/>} />
+
+              {/*view all posts*/}
+              <Route path={'/post/all'} element={<Allposts/>} />
+
+              {/*view all forums*/}
+              <Route path={'/forum/all'} element={<Allforums/>} />
 
 
             </Routes>

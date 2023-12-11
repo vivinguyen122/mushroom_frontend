@@ -3,7 +3,6 @@ import './create.css'
 import {Link} from "react-router-dom";
 import {Spinner, Tooltip} from "reactstrap";
 
-
 export function reformatDate (datetime){
     const dateObject = new Date(datetime);
     const formattedDate = dateObject.toISOString().split('T')[0]; //get date before the t
@@ -20,7 +19,6 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formattedForums: [],
             formattedPosts: [],
             loading: true,
         };
@@ -28,27 +26,6 @@ class Home extends Component {
 
     componentDidMount() {
         this.setState({ loading: true });
-
-        setTimeout(() => { //delay loading
-            fetch("http://127.0.0.1:8000/api/forums/") //get forum full list
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response not okay for forums");
-                    }
-                    return response.json();
-                })
-                .then(forums => {
-                    const formattedForums = forums.map(forum => ({
-                        ...forum,
-                        // title: forum.description
-                    }));
-                    this.setState({ formattedForums, loading: false });
-                })
-                .catch(error => {
-                    console.error('Problem with the fetch for forums', error);
-                    this.setState({ loading: false });
-                });
-        }, 2000); // 2 second delay just to test loading
 
         setTimeout(() => { //delay loading
             fetch("http://127.0.0.1:8000/api/posts/") //get post list full
@@ -68,9 +45,9 @@ class Home extends Component {
                     console.error('Problem with the fetch for posts', error);
                     this.setState({ loading: false });
                 });
-    }, 2000); // 2 second delay just to test loading
+        }, 1000); // 3 second delay just to test loading
 
-}
+    }
 
 
     render() {
@@ -85,11 +62,10 @@ class Home extends Component {
                 ) : (
                     <>
                         <div className="card p-3 mt-3">
-                            <h2>Recent Posts</h2>
-                            <Link className={"linkStyle"} to={"/post/all"}>View All Posts</Link>
+                            <h2>All Posts</h2>
                             <div>
                                 {/*shows all the posts*/}
-                                {this.state.formattedPosts.slice(0, 6).map(post => (
+                                {this.state.formattedPosts.map(post => (
                                     <div className={"card postformat"} key={post.id}>
                                         <Link to={`/post/${post.id}`} className={"links"}>View Details</Link>
                                         <div className={"imgdisplay"}>
@@ -110,28 +86,6 @@ class Home extends Component {
                                         </div>
                                     </div>
                                 ))}
-                            </div>
-                        </div>
-
-                        <div className="card p-3">
-                            <div>
-                                <h2>Active Forums</h2>
-                                <Link className={"linkStyle"} to={"/forum/all"}>View All Forums</Link>
-                                <div>
-                                    {/*show all the forum*/}
-                                    {this.state.formattedForums.slice(0, 2).map(forum => (
-                                        <div className={"card forumformat"} key={forum.id}>
-                                            <Link to={`/forum/${forum.id}`} className={"links m-1"}>View Details</Link>
-                                            <div>
-                                                <strong>{forum.title}</strong>
-                                                <p>{forum.description}</p>
-                                                {/*make the date look prettier?*/}
-                                                <p className={"smallinfotext"}>Time: {reformatDate(forum.datetime)} {reformatTime(forum.datetime)}</p>
-                                                <p className={"smallinfotext"}>User: {forum.user}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
                             </div>
                         </div>
                     </>
