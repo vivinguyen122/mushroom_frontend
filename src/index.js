@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
-
+// import 'react-tooltip/dist/react-tooltip.css'
+// import { Tooltip } from 'react-tooltip'
 
 export default function Main() {
     return (

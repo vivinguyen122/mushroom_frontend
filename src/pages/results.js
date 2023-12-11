@@ -72,7 +72,7 @@ function Results() {
                             <div className={"textinfodisplay"}>
                                 <h3 className={"line-clamp"}>{post.title}</h3>
                                 <p className={"line-clamp"}>{post.description}</p>
-                                <p className={"smallinfotext"}>Posted by: {post.user.username}</p>
+                                <p className={"smallinfotext"}>Posted by: {post.username}</p>
                                 <p className={"smallinfotext"}>{reformatDate(post.datetime)} {reformatTime(post.datetime)}</p>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ function Results() {
                 ))}
             </div>
 
-            <div className={"card d-inline-flex p-3 mt-4"}>
+            <div className={"card p-3 mt-4"}>
             <h3 className={"m-3"}>Forums: {searchResults.forums.length}</h3>
             <ul>
                 {searchResults.forums.map((forum) => (
@@ -94,7 +94,7 @@ function Results() {
                                         <strong>{forum.title}</strong>
                                         <p>{forum.description}</p>
                                         <p className={"smallinfotext"}>Time: {reformatDate(forum.datetime)} {reformatTime(forum.datetime)}</p>
-                                        <p className={"smallinfotext"}>User: {forum.user.username}</p>
+                                        <p className={"smallinfotext"}>User: {forum.username}</p>
                                     </div>
                                 </div>
                         </div>

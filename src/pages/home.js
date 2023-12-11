@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './create.css'
 import {Link} from "react-router-dom";
+import {Tooltip} from "reactstrap";
+
 
 export function reformatDate (datetime){
     const dateObject = new Date(datetime);
@@ -62,7 +64,10 @@ class Home extends Component {
 
     render() {
         return (
+
             <div className="col-md-9 col-sm-10 mt-4 mx-auto">
+
+
                 <div className="card p-3 mt-3">
                    <h2>Recent Posts</h2>
                     <div>
@@ -99,14 +104,21 @@ class Home extends Component {
                         <div>
                             {/*show all the forum*/}
                             {this.state.formattedForums.slice(0, 2).map(forum => (
-                                <div className={"card forumformat hovergrow"}>
-                                    <Link to={`/forum/${forum.id}`} className={"links m-1"}>View Details</Link>
-                                    <div>
-                                        <strong>{forum.title}</strong>
-                                        <p>{forum.description}</p>
-                                        {/*make the date look prettier?*/}
-                                        <p className={"smallinfotext"}>Time: {reformatDate(forum.datetime)} {reformatTime(forum.datetime)}</p>
-                                        <p className={"smallinfotext"}>User: {forum.user}</p>
+                                <div className={"card forumformat"}>
+                                    <Tooltip key={forum.id} target={`forum-${forum.id}`} placement="top" trigger="hover">
+                                        <div>
+                                            <p>{forum.description}</p>
+                                        </div>
+                                    </Tooltip>
+                                    <div id={`forum-${forum.id}`}>
+                                        <Link to={`/forum/${forum.id}`} className={"links m-1"}>View Details</Link>
+                                        <div>
+                                            <strong>{forum.title}</strong>
+                                            <p>{forum.description}</p>
+                                            {/*make the date look prettier?*/}
+                                            <p className={"smallinfotext"}>Time: {reformatDate(forum.datetime)} {reformatTime(forum.datetime)}</p>
+                                            <p className={"smallinfotext"}>User: {forum.user}</p>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
